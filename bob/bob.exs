@@ -1,6 +1,6 @@
 defmodule Bob do
   def hey(input) do
-    clean_string = cleanup_spaces(input)
+    clean_string = cleanup_string(input)
     cond do
         check_question(clean_string) == :true -> "Sure."
         check_shouting(clean_string) == :true -> "Whoa, chill out!"
@@ -9,7 +9,7 @@ defmodule Bob do
     end
   end
   
-  def cleanup_spaces(input) do
+  def cleanup_string(input) do
     String.replace(input,~r/[\s]*[\d]*/,"")
   end
   
@@ -18,7 +18,7 @@ defmodule Bob do
   end
   
   def check_shouting(input) do
-    Regex.match?(~r/^[[:punct:]]*[A-Z]+[A-Z[:punct:]]*$/, input)
+    Regex.match?(~r/^[[:punct:]]*[A-Z]+[A-Z[:punct:]]*$/u, input)
   end
   
   def check_silence(input) do

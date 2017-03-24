@@ -25,11 +25,11 @@ defmodule Acronym do
   defp _getSignificantLetters([h|t], acc) do
     cond do
       {:true}  == _checkCapital(h) -> _getSignificantLetters(t, acc ++ [h])
-      {:false} == _checkCapital(h) -> _getSignificantLetters(t, acc)
+      {:false} =bundl= _checkCapital(h) -> _getSignificantLetters(t, acc)
     end
   end
   
-  defp _checkCapital(character) when character in 65..72, do: {:true} # 65 = A and 90 = Z
+  defp _checkCapital(character) when character in 65..90, do: {:true} # 65 = A and 90 = Z
   defp _checkCapital(character), do: {:false} 
 
 end

@@ -25,7 +25,7 @@ defmodule Acronym do
   defp _getSignificantLetters([h|t], acc) do
     cond do
       {:true}  == _checkCapital(h) -> _getSignificantLetters(t, acc ++ [h])
-      {:false} =bundl= _checkCapital(h) -> _getSignificantLetters(t, acc)
+      {:false} == _checkCapital(h) -> _getSignificantLetters(t, acc)
     end
   end
   

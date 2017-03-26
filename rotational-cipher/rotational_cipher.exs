@@ -6,26 +6,31 @@ defmodule RotationalCipher do
   iex> RotationalCipher.rotate("Attack at dawn", 13)
   "Nggnpx ng qnja"
   """
-  @start_A 65
-  @total_letters 26
   
   @spec rotate(text :: String.t(), shift :: integer) :: String.t()
   def rotate(text, shift) do
-    to_charlist(text) ++ [0]
-    |> _rotate  shift, ""
+    _rotate(String.to_charlist(text), shift)
+    |> List.to_string
   end
   
-  defp _rotate([0], shift , new_string) do
-    new_string
-  end
-    
-  defp _rotate([head | tail], shift , new_string) do
-    _rotate(tail, shift, new_string <> shift_letter(head, shift))
+  defp _rotate([], _), do: ''
+  defp _rotate([h | t], shift), do: [rotate_letter(h, shift)] ++ _rotate(t, shift)
+  
+  defp rotate_letter(letter, shift) when letter >= ?a and letter <= ?z do
+    calculate_real_shif(letter, shift, ?a)
   end
   
-  defp shift_letter(current_position, shift) do
-    new_position = 1 + current_position - @start_A  + shift -(@total_letters)*div(current_position - @start_A + shift,@total_letters)
-    <<new_position + @start_A - 1>>  
+  defp rotate_letter(letter, shift) when letter >= ?A and letter <= ?Z do
+    calculate_real_shif(letter, shift, ?A)
+  end
+  
+  defp rotate_letter(letter, shift), do: letter
+
+  defp calculate_real_shif(letter, original_shift, initial_position) do
+    offset = letter - initial_position
+    cond do
+      0     == div(offset + original_shift, 26) -> letter + original_shift
+      0     < div(offset + original_shift, 26) -> initial_position + rem(offset + original_shift, 26)
+    end
   end
 end
-

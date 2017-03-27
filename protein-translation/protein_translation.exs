@@ -1,8 +1,5 @@
 defmodule ProteinTranslation do
-  @doc """
-  Given an RNA string, return a list of proteins specified by codons, in order.
-  """
-  @codon_to_proteine %{
+   @codon_to_proteine %{
     :UGU => "Cysteine",
     :UGC => "Cysteine",
     :UUA => "Leucine",
@@ -21,6 +18,10 @@ defmodule ProteinTranslation do
     :UAG => "STOP",
     :UGA => "STOP"
   }
+  
+  @doc """
+  Given an RNA string, return a list of proteins specified by codons, in order.
+  """
   
   @spec of_rna(String.t()) :: { atom,  list(String.t()) }
   def of_rna(rna) do

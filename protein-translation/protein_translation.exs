@@ -1,24 +1,23 @@
 defmodule ProteinTranslation do
    @codon_to_proteine %{
-    :UGU => "Cysteine",
-    :UGC => "Cysteine",
-    :UUA => "Leucine",
-    :UUG => "Leucine",
-    :AUG => "Methionine",
-    :UUU => "Phenylalanine",
-    :UUC => "Phenylalanine",
-    :UCU => "Serine",
-    :UCC => "Serine",
-    :UCA => "Serine",
-    :UCG => "Serine",
-    :UGG => "Tryptophan",
-    :UAU => "Tyrosine",
-    :UAC => "Tyrosine",
-    :UAA => "STOP",
-    :UAG => "STOP",
-    :UGA => "STOP"
+    "UGU" => "Cysteine",
+    "UGC" => "Cysteine",
+    "UUA" => "Leucine",
+    "UUG" => "Leucine",
+    "AUG" => "Methionine",
+    "UUU" => "Phenylalanine",
+    "UUC" => "Phenylalanine",
+    "UCU" => "Serine",
+    "UCC" => "Serine",
+    "UCA" => "Serine",
+    "UCG" => "Serine",
+    "UGG" => "Tryptophan",
+    "UAU" => "Tyrosine",
+    "UAC" => "Tyrosine",
+    "UAA" => "STOP",
+    "UAG" => "STOP",
+    "UGA" => "STOP"
   }
-  
   @doc """
   Given an RNA string, return a list of proteins specified by codons, in order.
   """
@@ -75,7 +74,7 @@ defmodule ProteinTranslation do
   """
   @spec of_codon(String.t()) :: { atom, String.t() }
   def of_codon(codon) do
-      result =  @codon_to_proteine[String.to_atom(codon)]
+      result =  @codon_to_proteine[codon]
       if result do
         {:ok, result}
       else

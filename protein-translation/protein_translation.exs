@@ -34,7 +34,6 @@ defmodule ProteinTranslation do
     codon_to_test = List.to_string([a] ++ [b] ++ [c])
     {codon_status, translation} = of_codon(codon_to_test)
     cond do
-      #codon_status == :ok -> group_codon(tail, {status, Enum.uniq(acc ++ [translation])})
       codon_status == :ok -> build_proteint_list(tail, status, acc, translation)
       codon_status == :error -> {:error, "invalid RNA"}
     end
